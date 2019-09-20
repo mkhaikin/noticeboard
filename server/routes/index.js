@@ -1,7 +1,6 @@
 // init routes module
 const express = require('express');
 const router = express.Router();
-
 // create routing directories from parent folder
 const adminRoute = require('./admin');
 const dashboardRoute = require('./dashboard');
