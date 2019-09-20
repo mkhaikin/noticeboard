@@ -1,0 +1,28 @@
+{
+  "name": "vizimo",
+  "version": "1.0.0",
+  "description": "Node sql dashboard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkhaikin/dashboard.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "sql"
+  ],
+  "author": "mkhaikin",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/mkhaikin/dashboard/issues"
+  },
+  "homepage": "https://github.com/mkhaikin/dashboard#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0"
+  }
+}
