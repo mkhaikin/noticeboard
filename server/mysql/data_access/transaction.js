@@ -14,15 +14,18 @@ function Transaction() {
                         ' CONCAT(DATE(n.end ), \' \', HOUR(n.end ), \':\', MINUTE(n.end )) as end ' +
                         ' FROM condos as c JOIN new_noticetable as n ON c.code = n.condo  WHERE c.code = ? ORDER BY n.id;'; 
 
-            if (err) throw err; // not connected!
+            //if (err) throw err; // not connected!
 
             con.query(query, code, function (err, result) {  
                     //con.release();  
-                    res.send(result);  
+                                            //res.send(result);  //commented by Yefim
+                    
                     //data = result;
-                    console.log(result);
+                    //console.log(result);
                     if (typeof callback === 'function') {
-                        callback(result);
+                        if(err) callback(err, null);
+                        else
+                            callback(null, result);
                       }  
                       
                     con.release();
@@ -33,16 +36,40 @@ function Transaction() {
     };  
 
     //insert new notice
-    this.insertNewNotice = function(condo, text, start, end, res){
+    this.insertNewNotice = function(condo, text, start, end, res, callback){
         // initialize database connection  
         connection.init();  
         // get condo code as parameter to passing into query and return filter data  
-        connection.acquire(function (err, con) {  
-            var query ='INSERT INTO new_noticetable ( condo, text, start, end, created )' + 
-            ' VALUES ( ?, ?, ?, ?, NOW() );';
-            con.query(query, condo, text, start, end, function (err, result) {  
+        connection.acquire((err, con) => {  
+
+           var query ='INSERT INTO new_noticetable (condo, text, start, end, created)' + 
+                        ' Values((SELECT code FROM condos WHERE name = ?), ?,?,?, NOW());';
+            var params = [condo, text, start, end];
+      
+            con.query(query, params, (err, result) => {  
+
+                if (typeof callback === 'function') {
+                    if(err) {
+                        //console.log('Error1 in Insert!');
+                        callback(err, null);
+                    }
+
+                    var queryLastId = 'SELECT MAX(id) FROM new_noticetable ' + 
+                    'WHERE condo IN (SELECT code FROM condos WHERE name = ?);';
+                    con.query(queryLastId, condo, function (err, result) {  
+
+                        //console.log("ID of inserted row: " + result);
+                       
+                        if(err){
+                            console.log('Error2 in Insert!');
+                            callback(err, null);
+                        }
+                        else
+                            callback(null, result);
+                    });  
+                }  
                 con.release();  
-                res.send(result);  
+
             });  
         }); 
     };  
