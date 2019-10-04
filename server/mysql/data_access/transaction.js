@@ -33,6 +33,37 @@ function Transaction() {
 
         });  
         //return data;
+    }; 
+    
+    this.getAllNoticeByID  = function (id, res, callback) {
+        var data;
+        // initialize database connection  
+        connection.init();  
+        
+        // get condo code as parameter to passing into query and return filter data  
+        connection.acquire(function (err, con) {  
+            var query = 'SELECT c.name, n.id, n.text, CONCAT(DATE(n.start), \' \', HOUR(n.start), \':\', MINUTE(n.start)) as start,' + 
+                        ' CONCAT(DATE(n.end ), \' \', HOUR(n.end ), \':\', MINUTE(n.end )) as end ' +
+                        ' FROM condos as c JOIN new_noticetable as n ON c.code = n.condo  WHERE c.code = ? ORDER BY n.id DESC;'; 
+
+            //if (err) throw err; // not connected!
+
+            con.query(query, code, function (err, result) {  
+                    //con.release();  
+                    //res.send(result);  //commented by Yefim
+                    //data = result;
+                    //console.log(result);
+                    if (typeof callback === 'function') {
+                        if(err) callback(err, null);
+                        else
+                            callback(null, result);
+                      }  
+                      
+                    con.release();
+                });  
+
+        });  
+        //return data;
     };  
 
     //insert new notice

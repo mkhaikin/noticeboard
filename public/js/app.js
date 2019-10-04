@@ -93,7 +93,15 @@ $('.content .content-notice__list button').on('click', function() {
     const name = $(this).attr('name');
 
     if(name == "Edit"){
-        alert('Edit button!');
+        alert('Edit button! id = ' + id);
+        $.ajax({
+            url: 'http://localhost:3000/dashboard/edit',
+            method: 'GET',
+            data: {
+                id: id
+              }
+        })
+       
     }
     else if(name == "Delete"){
         alert('Delete button!! ID = ' + id);

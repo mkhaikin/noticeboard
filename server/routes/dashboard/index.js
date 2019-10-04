@@ -114,3 +114,30 @@ console.log("!!!!!!!!!!! POST: " + noticeEnd);
     //////////////////////////////
     return router;
 };
+
+router.get('/edit', (req, res, next)=>{
+    //const id = req.body.id; 
+    //console.log('id = ' + id);
+    transactions.getAllNoticesByCondoCode("abcd1234", res, function ( err, data){
+        //console.log("Result from DB: " + JSON.stringify(data));
+            if(err){
+                return res.status(501).json({
+                    message: 'Not able to query the database'
+                });
+            }
+            else{
+                /*
+                var index;
+                for(index = 0; index < data.length; index++){
+                    let d = data[index];
+                    Object.keys(d).forEach(function (key) {
+                        console.log(key + ' = '+ d[key]);
+                    });
+                }
+                */
+                //res.render("index_new", {data, style: 'index_new'});
+                res.render("index_notice", {data, style: 'index_notice'});
+            }
+        }
+    );
+});

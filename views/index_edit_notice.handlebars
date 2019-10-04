@@ -3,10 +3,5 @@
    <h3>Name: {{data.0.name}}</h3>
    <input type="hidden" name="condoName" value="{{data.0.name}}">
 
-    {{> addNotice }}
-    
-    <div class="content-notice">
-        {{#each data}} {{> displayNotice }}{{/each}}
-    </div>
-
+    {{> editNotice }}
 </div>
