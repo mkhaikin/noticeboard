@@ -116,17 +116,18 @@ console.log("!!!!!!!!!!! POST: " + noticeEnd);
 };
 
 router.get('/edit', (req, res, next)=>{
-    //const id = req.body.id; 
-    //console.log('id = ' + id);
-    transactions.getAllNoticesByCondoCode("abcd1234", res, function ( err, data){
-        //console.log("Result from DB: " + JSON.stringify(data));
+    const id = req.body.id; 
+    console.log('id = ' + id);
+    transactions.getNoticeByID(id, res, function ( err, data){
+        console.log("Result from DB: " + JSON.stringify(data));
             if(err){
+                console.log(err);
                 return res.status(501).json({
-                    message: 'Not able to query the database'
+                    message: 'Not able to query the database for edit'
                 });
             }
             else{
-                /*
+                /**/ 
                 var index;
                 for(index = 0; index < data.length; index++){
                     let d = data[index];
@@ -134,9 +135,9 @@ router.get('/edit', (req, res, next)=>{
                         console.log(key + ' = '+ d[key]);
                     });
                 }
-                */
+                /**/
                 //res.render("index_new", {data, style: 'index_new'});
-                res.render("index_notice", {data, style: 'index_notice'});
+                res.render("index_edit_notice", {data, style: 'index_notice'});
             }
         }
     );

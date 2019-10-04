@@ -35,7 +35,7 @@ function Transaction() {
         //return data;
     }; 
     
-    this.getAllNoticeByID  = function (id, res, callback) {
+    this.getNoticeByID  = function (id, res, callback) {
         var data;
         // initialize database connection  
         connection.init();  
@@ -44,11 +44,11 @@ function Transaction() {
         connection.acquire(function (err, con) {  
             var query = 'SELECT c.name, n.id, n.text, CONCAT(DATE(n.start), \' \', HOUR(n.start), \':\', MINUTE(n.start)) as start,' + 
                         ' CONCAT(DATE(n.end ), \' \', HOUR(n.end ), \':\', MINUTE(n.end )) as end ' +
-                        ' FROM condos as c JOIN new_noticetable as n ON c.code = n.condo  WHERE c.code = ? ORDER BY n.id DESC;'; 
+                        ' FROM condos as c JOIN new_noticetable as n ON c.code = n.condo  WHERE n.id = ?;'; 
 
             //if (err) throw err; // not connected!
 
-            con.query(query, code, function (err, result) {  
+            con.query(query, id, function (err, result) {  
                     //con.release();  
                     //res.send(result);  //commented by Yefim
                     //data = result;
