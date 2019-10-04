@@ -8,7 +8,7 @@
             <input type="text" required placeholder="Start date as YYYY-MM-DD hh:mm" class="form-control" name="start">
             <input type="text" required placeholder="End date as YYYY-MM-DD hh:mm" class="form-control" name="end">
         </div>
-            <button class="btn btn-success" type="submit" name="addCondo}}">
+            <button class="btn btn-success" type="submit" name="addCondo">
             Add
             </button>
         
@@ -19,14 +19,11 @@
            
             <div class="content-notice_list" id={{id}}>
                     <p>{{text}}</p>
-                    <p>Start: {{start}}   End: {{end}}</p>
-                    <button class="btn btn-success" data-id="{{id}}">
-                        Edit
-                    </button>
-                    <button class="btn btn-success" data-id="{{id}}">
-                        Delete
-                    </button>
-            <p>    
+                    <p>Start: {{start}}</p>
+                    <p>End: {{end}}</p>
+                    <button class="btn btn-success" data-id="{{id}}" name="Edit">Edit</button>
+                    <button class="btn btn-success" data-id="{{id}}" name="Delete">Delete</button>
+            <p> </p>   
            </div>
         {{/each}}
     </div>

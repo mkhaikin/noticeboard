@@ -23,7 +23,8 @@ module.exports = () => {
                         });
                     }
                     */
-                    res.render("index_new", {data, style: 'index_new'});
+                    //res.render("index_new", {data, style: 'index_new'});
+                    res.render("index_notice", {data, style: 'index_notice'});
                 }
             }
         );
@@ -68,25 +69,48 @@ console.log("!!!!!!!!!!! POST: " + noticeEnd);
                 });
             }
             else{
+                /*
                 var index;
+                var id;
                     for(index = 0; index < result.length; index++){
                         let d = result[index];
                         Object.keys(d).forEach(function (key) {
                             console.log(key + ' = '+ d[key]);
                         });
                     }
+                    */
+                    let d = result[0];
+                    var id = d["id"]; //key in result map returns id value
+
                 //result is a new index of the notice
-                return res.json({
+                return res.json(
+                    {
                     condoName: condoName,
                     text: noticeText,
                     start: noticeStart,
                     end: noticeEnd,
-                    id: result
+                    id: id
                 });
             }
         });        
     });
     //////////////////////
-    
+    ////////  delete /////////////////
+    router.delete('/delete', (req, res, next)=>{
+        const id = req.body.id;      
+
+        transactions.deleteNotice(id, function(err, result) {
+            if (err) {
+               return res.status(501).json({
+                 message: 'Not able to delete notice'
+             });
+            }
+
+            return res.json({
+                id: id
+            });
+        });
+    });  
+    //////////////////////////////
     return router;
 };

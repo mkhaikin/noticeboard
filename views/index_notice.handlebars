@@ -1,0 +1,11 @@
+<div class="container content">
+   <h1>Condos App</h1>
+   <h3>Name: {{data.0.name}}</h3>
+
+    {{> addNotice }}
+    
+    <div class="content-notice">
+        {{#each data}} {{> displayNotice }}{{/each}}
+    </div>
+
+</div>
