@@ -33,7 +33,7 @@ module.exports = () => {
         //     condos
         // })
     });
-    
+
     router.get('/add/:id', (req, res, next) => {
         return res.send(`Details for notice #${req.params.id}`);
     });
