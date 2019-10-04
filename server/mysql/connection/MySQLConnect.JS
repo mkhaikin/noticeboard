@@ -5,12 +5,12 @@ function MySQLConnect() {
   this.pool = null;  
     
   // Init MySql Connection Pool  
-  this.init = function() {  
+  this.init = () => {  
     this.pool = mysql.createPool({  
       connectionLimit: 10,  
       host     : 'localhost',  
       user     : 'root',  
-      password : '',  
+      password : 'TCSuEvEgC42WsJBY',  
       database: 'nb_dashboard'  
     });  
   }; 

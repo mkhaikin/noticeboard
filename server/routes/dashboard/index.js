@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const condos = require('../../../Condos.js');
+const condos = require('../../../Condos.js');//no longer used
 const  transactions = require('../../mysql/data_access/transaction'); 
 
 module.exports = () => {
     router.get('/', (req, res, next) => {
-
         transactions.getAllNoticesByCondoCode("abcd1234", res, function ( err, data){
             //console.log("Result from DB: " + JSON.stringify(data));
                 if(err){
@@ -34,20 +33,11 @@ module.exports = () => {
         //     condos
         // })
     });
-
-    router.get('/add', (req, res, next) => {
-        return res.send('Added new notice');
-    });
-
-    router.put('/edit', (req, res, next) => {
-        return res.send('edit notice');
-    });
-
+    
     router.get('/add/:id', (req, res, next) => {
         return res.send(`Details for notice #${req.params.id}`);
     });
 
-    //////////////////////
     router.post('/add', (req, res, next)=>{
         
         const condoName = req.body.condoName;
