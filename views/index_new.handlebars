@@ -1,0 +1,30 @@
+<div class="container content">
+    <form>
+        <h1>Condos App</h1>
+        <h3>Name: {{data.0.name}}</h3>
+        <input type="hidden" name="condoName" value="{{data.0.name}}">
+        <div class="form-group">
+            <input type="text" required placeholder="Add notice " class="form-control" name="text">
+            <input type="text" required placeholder="Start date as YYYY-MM-DD hh:mm" class="form-control" name="start">
+            <input type="text" required placeholder="End date as YYYY-MM-DD hh:mm" class="form-control" name="end">
+        </div>
+            <button class="btn btn-success" type="submit" name="addCondo">
+            Add
+            </button>
+        
+    </form>>
+  
+    <div class="content-notice">
+        {{#each data}}
+           
+            <div class="content-notice_list" id={{id}}>
+                    <p>{{text}}</p>
+                    <p>Start: {{start}}</p>
+                    <p>End: {{end}}</p>
+                    <button class="btn btn-success" data-id="{{id}}" name="Edit">Edit</button>
+                    <button class="btn btn-success" data-id="{{id}}" name="Delete">Delete</button>
+            <p> </p>   
+           </div>
+        {{/each}}
+    </div>
+</div>
