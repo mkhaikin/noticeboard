@@ -15,22 +15,31 @@ function Transaction() {
                         ' FROM condos as c JOIN new_noticetable as n ON c.code = n.condo  WHERE c.code = ? ORDER BY n.id DESC;'; 
 
             //if (err) throw err; // not connected!
-
             con.query(query, code, function (err, result) {  
-                    //con.release();  
-                                            //res.send(result);  //commented by Yefim
-                    
-                    //data = result;
-                    //console.log(result);
-                    if (typeof callback === 'function') {
-                        if(err) callback(err, null);
-                        else
-                            callback(null, result);
-                      }  
-                      
-                    con.release();
-                });  
+              //con.release();
+              //res.send(result);  //commented by Yefim
 
+              //data = result;
+              //console.log(result);
+              if (typeof callback === 'function') {
+                  if(err) callback(err, null);
+                  else
+                      callback(null, result);
+                }  
+
+              con.release();
+          });  
+          
+            con.query(query, code, (err, result) => {  
+                //con.release();  
+                res.send(result);  
+                //data = result;
+                console.log(result);
+                if (typeof callback === 'function') {
+                    callback(result);
+                    }  
+                con.release();
+            });  
         });  
         //return data;
     };  
