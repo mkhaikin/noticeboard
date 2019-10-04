@@ -4,6 +4,17 @@ const app = express();
 const exphbs = require('express-handlebars');
 const routes = require('./routes');
 
+/////Added by Yefim
+const methodOverride = require('method-override');
+const bodyParser = require('body-parser');
+//const multer = require('multer'); 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(methodOverride("_method"));
+//app.use(multer()); 
+
+/////End of add
+
 // Handlebars Middleware
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -13,7 +24,7 @@ app.use('/', routes());
 app.use(express.static('public'));
 // Body Parser Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
+        //app.use(express.urlencoded({ extended: false}));
 // silence the server request for a fac icon
 app.get('/favicon.ico', (req,res,next) => {
     return res.sendStatus(204);
