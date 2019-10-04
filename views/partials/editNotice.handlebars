@@ -1,0 +1,12 @@
+<form>
+    <input type="hidden" name="condoName" value="{{data.0.name}}">
+        <div class="form-group">
+            <input type="text" class="form-control" name="text" value="{{data.0.text}}">
+            {{!-- add form labels --}}
+            <input type="text" class="form-control" name="start" value="{{data.0.start}}"><p>YYYY-MM-DD hh:mm</p>
+            <input type="text" class="form-control" name="end" value="{{data.0.end}}"><p>YYYY-MM-DD hh:mm</p>
+        </div>
+            <button class="btn btn-success" type="submit" name="saveCondo">Save</button>
+            <button class="btn btn-success" type="submit" name="CancelEdit">Cancel</button>
+</form>
+
