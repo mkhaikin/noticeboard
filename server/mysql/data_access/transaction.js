@@ -16,18 +16,16 @@ function Transaction() {
 
             if (err) throw err; // not connected!
 
-            con.query(query, code, function (err, result) {  
-                    //con.release();  
-                    res.send(result);  
-                    //data = result;
-                    console.log(result);
-                    if (typeof callback === 'function') {
-                        callback(result);
-                      }  
-                      
-                    con.release();
-                });  
-
+            con.query(query, code, (err, result) => {  
+                //con.release();  
+                res.send(result);  
+                //data = result;
+                console.log(result);
+                if (typeof callback === 'function') {
+                    callback(result);
+                    }  
+                con.release();
+            });  
         });  
         //return data;
     };  
