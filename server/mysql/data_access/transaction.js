@@ -106,7 +106,7 @@ function Transaction() {
     };  
 
     //update notice
-    this.updateNotice = function(condo, id, text, start, end, modified, res){
+    this.updateNotice = function( id, text, start, end, res, callback){
         // initialize database connection  
         connection.init();  
         // get condo code and id as parameter to passing into query and return filter data  
@@ -116,10 +116,19 @@ function Transaction() {
                 'start= ?, ' +
                 'end= ?, ' +
                 'modified= NOW() ' +
-                'WHERE condo= ? and id= ?';
-            con.query(query, text, start, end, condo, id, function (err, result) {  
-                con.release();  
-                res.send(result);  
+                'WHERE id= ?;';
+                                                    //console.log(start + '|' + end + '|' + id);    
+            var params = [text, start, end, id];    
+            con.query(query, params, function (err, result) { 
+                if (typeof callback === 'function') {                    
+                    if(err){
+                        console.log('Error in Update!');
+                        callback(err, null);
+                    }
+                    else
+                        callback(null, result);
+                }
+                con.release();                   
             });
         });
     }; 
