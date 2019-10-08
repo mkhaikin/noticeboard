@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const condos = require('../../../Condos.js');
+const condos = require('../../../Condos.js');//no longer used
 const  transactions = require('../../mysql/data_access/transaction'); 
 
 module.exports = () => {
     router.get('/', (req, res, next) => {
+
         // get all records for current user --> currently hardcoded "abcd1234"
+
         transactions.getAllNoticesByCondoCode("abcd1234", res, function ( err, data){
 
                 if(err){
@@ -18,11 +20,16 @@ module.exports = () => {
                 }
             }
         );
+        // return     res.render('index', {
+        //     title: 'Welcome to Dashboard',
+        //     condos
+        // })
     });
 
     router.get('/add/:id', (req, res, next) => {
         return res.send(`Details for notice #${req.params.id}`);
     });
+
 
     ////////// add new record ///////////////
     router.post('/add', (req, res, next)=>{
