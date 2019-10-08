@@ -32,12 +32,20 @@ form .form-group {
     width: 100%;
 }
 
+form .editform-group {
+    width: 100%;
+}
+
+form .addform-group {
+    width: 100%;
+}
+
 form button {
     width: 100px;
 }
 
 .content .content-notice {
-    width: 500px;
+    width: 600px;
     margin: 0 auto;
     overflow: auto;
     margin-top: 10em;
@@ -46,7 +54,7 @@ form button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: red;
+    background: lightgray;
     padding: 10px;
     height: 90px;
     border-radius: 4px;
@@ -59,6 +67,6 @@ form button {
 }
 
 .content .content-notice__list p {
-    font-size: 24px;
+    font-size: 12px;
 }
 
