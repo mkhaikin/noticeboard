@@ -5,7 +5,7 @@ const  transactions = require('../../mysql/data_access/transaction');
 
 module.exports = () => {
     router.get('/', (req, res, next) => {
-        /////////// get all records for current user --> currently hardcoded "abcd1234"
+        // get all records for current user --> currently hardcoded "abcd1234"
         transactions.getAllNoticesByCondoCode("abcd1234", res, function ( err, data){
 
                 if(err){
