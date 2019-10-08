@@ -1,12 +1,25 @@
 <form>
     <input type="hidden" name="condoName" value="{{data.0.name}}">
-        <div class="form-group">
+    <div class="addform-group"  style="display:inline;">
+        <div class="form-group" >
             <input type="text" required placeholder="Add notice " class="form-control" name="text">
             <input type="text" required placeholder="Start date as YYYY-MM-DD hh:mm" class="form-control" name="start">
             <input type="text" required placeholder="End date as YYYY-MM-DD hh:mm" class="form-control" name="end">
         </div>
-            <button class="btn btn-success" type="submit" name="addCondo}}">
-            Add
-            </button>
-        
+            <button class="btn btn-success" type="submit" name="addNotice">Add</button>
+    </div>
+
+    <div class="editform-group" style="display:none;">
+        <input type="hidden" name="noticeID" value="{{id}}">
+        <div class="form-group" >
+            <input type="text" class="form-control" name="text">
+            <input type="text" class="form-control" name="start">
+            <input type="text" class="form-control" name="end">
+        </div>
+        <div>
+            <button class="btn btn-success" type="button" name="editNotice">Save</button>
+            <button class="btn btn-success" type="button" name="cancelEdit">Cancel</button>
+        </div>
+    </div>
+    
 </form>
