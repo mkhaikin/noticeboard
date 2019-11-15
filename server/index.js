@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(methodOverride("_method"));
+
 //app.use(multer()); 
 
 /////End of add
@@ -29,6 +30,8 @@ app.use(express.json());
 app.get('/favicon.ico', (req,res,next) => {
     return res.sendStatus(204);
 });
+
+//app.use('/picker', express.static(__dirname + '/node_modules/jquery-datetimepicker/'));
 
 const fs = require('fs');
 var data = fs.readFileSync('condos.json');

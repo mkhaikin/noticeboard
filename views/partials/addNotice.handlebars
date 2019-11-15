@@ -1,10 +1,17 @@
-<form>
+<form >
     <input type="hidden" name="condoName" value="{{data.0.name}}">
     <div class="addform-group"  style="display:inline;">
         <div class="form-group" >
+            <div id="addpic"></div>
             <input type="text" required placeholder="Add notice " class="form-control" name="text">
+            <!--
             <input type="text" required placeholder="Start date as YYYY-MM-DD hh:mm" class="form-control" name="start">
             <input type="text" required placeholder="End date as YYYY-MM-DD hh:mm" class="form-control" name="end">
+            <input type="text" placeholder="Put Start date here" class="date" id="date_pickerStart" name="pickerStart"/>
+            <input type="text" placeholder="Put End date here" class="date" id="date_pickerEnd" name="pickerEnd"/>
+            -->
+            <input type="text" placeholder="Put Start date here" class="date" id="date_pickerStart" name="start"/>
+            <input type="text" placeholder="Put End date here" class="date" id="date_pickerEnd" name="end"/>
         </div>
             <button class="btn btn-success" type="submit" name="addNotice">Add</button>
     </div>
@@ -13,8 +20,12 @@
         <input type="hidden" name="noticeID" value="{{id}}">
         <div class="form-group" >
             <input type="text" class="form-control" name="text">
+            <!--
             <input type="text" class="form-control" name="start">
             <input type="text" class="form-control" name="end">
+            -->
+            <input type="text" class="date" id="date_pickerStart" name="start"/>
+            <input type="text" class="date" id="date_pickerEnd" name="end"/>
         </div>
         <div>
             <button class="btn btn-success" type="button" name="editNotice">Save</button>

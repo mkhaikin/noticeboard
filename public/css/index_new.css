@@ -62,3 +62,12 @@ form button {
     font-size: 24px;
 }
 
+.content .content-notice__list .noticeend {
+    position: relative;
+}
+
+#addmepic {
+    width: 200px;
+    height: 200px;
+    border: solid 1px #000;
+  }
