@@ -1,32 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const condos = require('../../../Condos.js');
-const  transactions = require('../../mysql/data_access/transaction'); 
+// const condos = require('../../../Condos.js'); //was used as hardoceded db. no longer in use
+const transactions = require('../../mysql/data_access/transaction'); 
 
 module.exports = () => {
     router.get('/', (req, res, next) => {
         // get all records for current user --> currently hardcoded "abcd1234"
         transactions.getAllNoticesByCondoCode("abcd1234", res, function ( err, data){
-
                 if(err){
                     return res.status(501).json({
                         message: 'Not able to query the database'
                     });
-                }
-                else{
-                    res.render("index_notice", {data, style: 'index_notice'});
-                }
+                } else{
+                    res.render("index_notice", {
+                        data, style: 'index_notice'
+                    });
+                 }
             }
         );
     });
 
-    router.get('/add/:id', (req, res, next) => {
-        return res.send(`Details for notice #${req.params.id}`);
-    });
+    // router.get('/add/:id', (req, res, next) => {
+    //     return res.send(`Details for notice #${req.params.id}`);
+    // });
 
-    ////////// add new record ///////////////
-    router.post('/add', (req, res, next)=>{
-        
+    // add new record 
+    router.post('/add', (req, res, next) => {   
         const condoName = req.body.condoName;
         const noticeText = req.body.text;
         var noticeStart = req.body.start + ":00"; //for full time format in db
@@ -63,8 +62,9 @@ module.exports = () => {
             }
         });        
     });
-    ////////  delete record /////////////////
-    router.delete('/delete', (req, res, next)=>{
+
+    // delete record 
+    router.delete('/delete', (req, res, next) => {
         const id = req.body.id;      
 
         transactions.deleteNotice(id, function(err, result) {
@@ -79,8 +79,9 @@ module.exports = () => {
             });
         });
     });  
-    ///////// Update edited values in the record //////////////
-    router.post('/edit', (req, res, next)=>{
+
+    // Update edited values in the record 
+    router.post('/edit', (req, res, next) => {
         const id = req.body.id; 
         const noticeText = req.body.text;
         var noticeStart = req.body.start + ":00";
@@ -105,7 +106,6 @@ module.exports = () => {
             }
         });   
     });
-    ////////////////////////////
     return router;
 };
 
