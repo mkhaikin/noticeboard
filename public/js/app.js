@@ -226,12 +226,81 @@ const removeNoticeFailed = () => {
 };
 
 const markActive = () => {
+    /*
     $('.content-notice__list .noticestart p').each((index, value) => {
         //alert( $(this).closest('.content .content-notice__list').find('.noticestart').text().replace("Start:", "").trim());
         alert( $(value).text().replace("Start:", "").trim() );
     });
-        
+     */
+    $('.content-notice__list ').each((index, value) => {
+        //alert( $(this).closest('.content .content-notice__list').find('.noticestart').text().replace("Start:", "").trim());
+        alert( $(value).find('.noticestart p').text().replace("Start:", "").trim() + ' | ' + $(value).find('.noticeend p').text().replace("End:", "").trim());
+    });   
 };
+
+//datapicker
+$('input[type= text]').on('click', function(event){
+   
+    const name = $(this).attr('name');
+    const id = $(this).attr('id');
+    
+    if(name == "start" || name == "end"){
+     //  $('#date_pickerStart').datetimepicker({
+        $(this).datetimepicker({
+        ownerDocument: document,
+        contentWindow: window,
+        value: '',
+        rtl: false,
+        format: 'Y/m/d H:i',
+        formatTime: 'H:i',
+        formatDate: 'Y/m/d',
+        startDate: false,
+        step: 15,
+        monthChangeSpinner: true,
+        closeOnDateSelect: false,
+        closeOnTimeSelect: true,
+        closeOnWithoutClick: true,
+        closeOnInputClick: true,
+        openOnFocus: true,
+        timepicker: true,
+        datepicker: true,
+        weeks: false,
+        defaultTime: false,
+        defaultDate: false,
+        minDate: false,
+        maxDate: false,
+        minTime: false,
+        maxTime: false,
+        minDateTime: false,
+        maxDateTime: false,
+        allowTimes: [],
+        opened: false,
+        initTime: true,
+        inline: false,
+        theme: '',
+        touchMovedThreshold: 5,
+        onSelectDate: function () { },
+        onSelectTime: function () { },
+        onChangeMonth: function () { },
+        onGetWeekOfYear: function () { },
+        onChangeYear: function () { },
+        onChangeDateTime: function () { },
+        onShow: function () { },
+        onClose: function () { },
+        onGenerate: function () { },
+        withoutCopyright: true,
+        inverseButton: false,
+        hours12: false,
+        next: 'xdsoft_next',
+        prev: 'xdsoft_prev',
+        dayOfWeekStart: 0,
+        parentID: 'body',
+        timeHeightInTimePicker: 25
+    });
+    
+            
+    }
+});
 
 
 
